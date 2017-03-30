@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+       default-lazy-init="true">
+
+    <!--<mvc:annotation-driven/>-->
+
+    <!--aliPay 支付配置-->
+    <bean id="aliPayService" class="com.wish.pay.ali.service.AliPayServiceImpl">
+        <constructor-arg index="0">
+            <!--构建AliPayClient-->
+            <bean id="alipayClient" class="com.alipay.api.DefaultAlipayClient">
+                <constructor-arg index="0" type="java.lang.String" value="${aliPay.serverUrl}"/>
+                <constructor-arg index="1" type="java.lang.String" value="${aliPay.appId}"/>
+                <constructor-arg index="2" type="java.lang.String" value="${aliPay.privateKey}"/>
+                <constructor-arg index="3" type="java.lang.String" value="${aliPay.format}"/>
+                <constructor-arg index="4" type="java.lang.String" value="${aliPay.charset}"/>
+                <constructor-arg index="5" type="java.lang.String" value="${aliPay.alipayPublicKey}"/>
+                <constructor-arg index="6" type="java.lang.String" value="${aliPay.signType}"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <!--wx 支付配置-->
+    <bean id="wxPayService" class="com.wish.pay.wx.service.WxPayServiceImpl">
+        <!--构建confing preUrl, appId, mchId, deviceInfo-->
+        <constructor-arg index="0" type="java.lang.String" value="${wxPay.serverUrl}"/>
+        <constructor-arg index="1" type="java.lang.String" value="${wxPay.appId}"/>
+        <constructor-arg index="2" type="java.lang.String" value="${wxPay.mchId}"/>
+        <constructor-arg index="3" type="java.lang.String" value="${wxPay.deviceInfo}"/>
+    </bean>
+
+</beans>

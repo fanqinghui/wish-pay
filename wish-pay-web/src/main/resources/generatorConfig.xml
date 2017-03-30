@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+            location="G:\JavaWork\apache-maven-3.1.9\jars\mysql\mysql-connector-java\5.1.35\mysql-connector-java-5.1.35.jar"/>
+    <context id="context" targetRuntime="MyBatis3">
+        <!--去除注释  -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- <javaTypeResolver >
+             <property name="forceBigDecimals" value="false" />
+         </javaTypeResolver>-->
+
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://10.100.103.18:3306/wish?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="dev" password="dev"/>-->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/wish?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root" password="root"/>
+        <!--1生成model模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java-->
+        <javaModelGenerator targetPackage="com.wish.pay.web.dao.entity" targetProject="C:\\generator">
+            <property name="trimStrings" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格  -->
+            <property name="enableSubPackages" value="false"/>
+        </javaModelGenerator>
+        <!--2对应的mapper.xml文件  -->
+        <sqlMapGenerator targetPackage="com.wish.pay.web.dao.entity" targetProject="C:\\generator">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!--3对应的Mapper接口类文件 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wish.pay.web.dao.mapper"
+                             targetProject="C:\\generator">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <table tableName="trade_order" domainObjectName="TradeOrder"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

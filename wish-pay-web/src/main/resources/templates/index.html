@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<b>创建订单</b>
+<form th:action="@{/pay/createPay}"
+      th:object="${createPay}"
+      action="#"
+      method="post"
+      target="_blank">
+    <!--订单id： <input type="text" name="orderId"/>-->
+    购买的商品名称：<input type="text" name="goodsName" value="iphone16"/><br/>
+    <!--    商品描述：<input type="text" name=""/>
+        商品价格：<input type="text" name=""/>-->
+    订单流水号：<input type="text" name="orderSerial"/><br/>
+    订单总金额：<input type="text" name="amount" value="1.23"/><br/>
+    支付方式：
+    <select name="payWay">
+        <option value="0" selected="selected">支付宝</option>
+        <option value="1">微信</option>
+    </select><br/>
+    <input type="submit" value="购买-下订单"/>
+</form>
+
+<hr/>
+<b>查询订单状态</b>
+<form th:action="@{/pay/queryTradeOrderStatus}"
+      th:object="${tradeStatus}"
+      action="#"
+      method="get"
+      target="_blank">
+    订单流水号：<input type="text" name="orderSerial"/><br/>
+    支付方式：
+    <select name="payWay">
+        <option value="0" selected="selected">支付宝</option>
+        <option value="1">微信</option>
+    </select>
+    <input type="submit" value="查询交易"/>
+</form>
+
+<hr/>
+<b>交易申请退款订单</b>
+<form th:action="@{/pay/refundTradeOrder}"
+      th:object="${refundTrade}"
+      action="#"
+      method="get"
+      target="_blank">
+    商户订单流水号：<input type="text" name="outTradeNo"/><br/>
+    商户退款流水号：<input type="text" name="outRequestNo"/>&nbsp;<span style="color: red;">如果不填写商户退款流水号 订单金额必须与退款金额一致，如需部分退款，则此参数必传。</span><br/>
+    订单金额：<input type="text" name="tradeAmount"/><br/>
+    退款金额：<input type="text" name="refundAmount"/><br/>
+    退款原因：<input type="text" name="refundReason"/><br/>
+    支付方式：
+    <select name="payWay">
+        <option value="0" selected="selected">支付宝</option>
+        <option value="1">微信</option>
+    </select>
+    <input type="submit" value="申请退款"/>
+</form>
+
+<hr/>
+<b>查询订单退款</b>
+<form th:action="@{/pay/queryRefundTradeOrder}"
+      th:object="${queryRefundTrade}"
+      action="#"
+      method="get"
+      target="_blank">
+    商户订单流水号：<input type="text" name="outTradeNo"/><br/>
+    退款流水号：<input type="text" name="outRequestNo"/><br/>
+    支付方式：
+    <select name="payWay">
+        <option value="0" selected="selected">支付宝</option>
+        <option value="1">微信</option>
+    </select>
+    <input type="submit" value="退款交易查询"/>
+</form>
+</body>
+</html>

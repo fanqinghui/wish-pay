@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wish.pay.web.dao.mapper.TradeOrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.wish.pay.web.dao.entity.TradeOrder">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="order_serial" jdbcType="VARCHAR" property="orderSerial"/>
+        <result column="trade_no" jdbcType="VARCHAR" property="tradeNo"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="pay_way" jdbcType="TINYINT" property="payWay"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="msg" jdbcType="VARCHAR" property="msg"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id,goods_name,order_serial, trade_no, status, pay_way, amount, msg, create_date, update_date
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from trade_order
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="getTradeOrderByOrderSerial" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from trade_order
+        where order_serial = #{orderSerial}
+        limit 1
+    </select>
+
+
+    <insert id="insert" parameterType="com.wish.pay.web.dao.entity.TradeOrder" useGeneratedKeys="true" keyProperty="id">
+        insert into trade_order (goods_name,order_serial, trade_no,status, pay_way, amount,
+        msg, create_date
+        )
+        values (#{goodsName},#{orderSerial,jdbcType=VARCHAR}, #{tradeNo,jdbcType=VARCHAR},
+        #{status,jdbcType=INTEGER}, #{payWay,jdbcType=TINYINT}, #{amount,jdbcType=DECIMAL},
+        #{msg,jdbcType=VARCHAR}, now()
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.wish.pay.web.dao.entity.TradeOrder" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into trade_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsName != null">
+                goods_name,
+            </if>
+            <if test="orderSerial != null">
+                order_serial,
+            </if>
+            <if test="tradeNo != null">
+                trade_no,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="payWay != null">
+                pay_way,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="msg != null">
+                msg,
+            </if>
+            <if test="createDate == null">
+                create_date,
+            </if>
+            <if test="1==1">
+                update_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsName != null">
+                #{goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderSerial != null">
+                #{orderSerial,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeNo != null">
+                #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="payWay != null">
+                #{payWay,jdbcType=TINYINT},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="msg != null">
+                #{msg,jdbcType=VARCHAR},
+            </if>
+            <if test="1==1">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.wish.pay.web.dao.entity.TradeOrder">
+        update trade_order
+        <set>
+            <if test="goodsName != null">
+                goods_name = #{goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderSerial != null">
+                order_serial = #{orderSerial,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeNo != null">
+                trade_no = #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="payWay != null">
+                pay_way = #{payWay,jdbcType=TINYINT},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="msg != null">
+                msg = #{msg,jdbcType=VARCHAR},
+            </if>
+            <if test="1==1">
+                update_date = now(),
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wish.pay.web.dao.entity.TradeOrder">
+        update trade_order
+        set goods_name = #{goodsName,jdbcType=VARCHAR},
+        order_serial = #{orderSerial,jdbcType=VARCHAR},
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+        status = #{status,jdbcType=INTEGER},
+        pay_way = #{payWay,jdbcType=TINYINT},
+        amount = #{amount,jdbcType=DECIMAL},
+        msg = #{msg,jdbcType=VARCHAR},
+        update_date = #{updateDate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
