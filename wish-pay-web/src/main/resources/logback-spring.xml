@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <!--变量声明-->
+    <property name="app.name" value="wishPay"/>
+    <property name="log.base" value="logs//wish.pay//dev"/>
+    <property name="log.name" value="wish_pay_web"/>
+
+    <contextName>${app.name}</contextName>
+
+    <!--开发环境. 多个使用逗号隔开 -->
+    <springProfile name="dev">
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="org.springboot.sample" level="INFO"/>
+        <logger name="com.wish.pay" level="INFO"/>
+    </springProfile>
+
+    <!-- 测试环境 多个使用逗号隔开 -->
+    <springProfile name="test">
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="org.springboot.sample" level="INFO"/>
+        <logger name="com.wish.pay" level="DEBUG"/>
+    </springProfile>
+
+    <!-- 生产环境 -->
+    <springProfile name="prod">
+        <logger name="org.springframework.web" level="ERROR"/>
+        <logger name="org.springboot.sample" level="ERROR"/>
+        <logger name="com.wish.pay" level="ERROR"/>
+    </springProfile>
+
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoder的默认实现类是ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--logger用来设置某一个包或者具体的某一个类的日志打印级别、以及指定<appender>。<loger>仅有一个name属性，
+    一个可选的level和一个可选的addtivity属性
+    name:用来指定受此loger约束的某一个包或者具体的某一个类。
+    level:设置日至级别
+    additivity:是否向上级loger传递打印信息。默认是true
+    -->
+    <logger name="com.wish.pay" level="INFO" additivity="true">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <!--其他日志包结构符合基本的交由root的appender打印输出   -->
+    <logger name="org.apache.catalina" level="WARN"/>
+    <logger name="org.apache" level="WARN"/>
+    <logger name="com.google.code" level="ERROR"/>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="com.ibatis.mybatis" level="DEBUG"/>
+    <logger name="org.apache.catalina.startup.DigesterFactory" level="ERROR"/>
+    <logger name="org.apache.catalina.util.LifecycleBase" level="ERROR"/>
+    <logger name="org.apache.coyote.http11.Http11NioProtocol" level="WARN"/>
+    <logger name="org.apache.sshd.common.util.SecurityUtils" level="WARN"/>
+    <logger name="org.apache.tomcat.util.net.NioSelectorPool" level="WARN"/>
+    <logger name="org.crsh.plugin" level="WARN"/>
+    <logger name="org.crsh.ssh" level="WARN"/>
+    <logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="ERROR"/>
+    <logger name="org.hibernate.validator.internal.util.Version" level="WARN"/>
+    <logger name="org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration" level="WARN"/>
+    <logger name="org.springframework.boot.actuate.endpoint.jmx" additivity="false">
+        <appender-ref ref="DEBUG_LEVEL_REMAPPER"/>
+    </logger>
+    <logger name="org.thymeleaf" additivity="false">
+        <appender-ref ref="DEBUG_LEVEL_REMAPPER"/>
+    </logger>
+</configuration>
