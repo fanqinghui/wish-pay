@@ -31,7 +31,7 @@
 3. 增加几种支付场景的演示
 
 ### 联系我
-QQ:332734252
-微信：afeifqh
-邮箱：fanqinghui100@126.com
+1. QQ:332734252
+2. 微信：afeifqh
+3. 邮箱：fanqinghui100@126.com
 
