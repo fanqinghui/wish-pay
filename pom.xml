@@ -27,44 +27,5 @@
             </roles>
         </developer>
     </developers>
-
-    <issueManagement>
-        <system>wiki</system>
-        <url>http://10.100.103.248:8090/pages/viewpage.action?pageId=950292</url>
-    </issueManagement>
-
-   <!-- <repositories>
-        <repository>
-            <id>mirrorId</id>
-            <name>wish repository id</name>
-            <url>http://10.100.103.12:8081/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>maven-net-cn</id>
-            <name>Maven China Mirror</name>
-            <url>http://10.100.103.12:8081/nexus/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
-    &lt;!&ndash;部署&ndash;&gt;
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>Nexus Release Repository</name>
-            <url>http://10.100.103.12:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>Nexus Snapshot Repository</name>
-            <url>http://10.100.103.12:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>-->
+ 
 </project>
