@@ -1,6 +1,5 @@
 
 ![Licence](https://img.shields.io/badge/licence-none-green.svg)
-[![GitHub Release](https://github.com/JoeyFan/wish-pay.svg)](https://github.com/JoeyFan/wish-pay.svg)
 
 # 愿支付（wish-pay）
 
