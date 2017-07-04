@@ -1,4 +1,7 @@
 
+![Licence](https://img.shields.io/badge/licence-none-green.svg)
+[![GitHub Release](https://img.shields.io/github/release/lihengming/spring-boot-api-project-seed.svg)](https://github.com/lihengming/spring-boot-api-project-seed/releases)
+
 # 愿支付（wish-pay）
 
 ## 整合支付模块（微信支付，支付宝支付）
