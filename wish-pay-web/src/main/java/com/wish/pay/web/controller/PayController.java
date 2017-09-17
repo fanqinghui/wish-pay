@@ -20,6 +20,8 @@ import com.wish.pay.web.exception.BusinessException;
 import com.wish.pay.web.service.ITradeOrderService;
 import com.wish.pay.wx.model.common.ProtocolResData;
 import com.wish.pay.wx.service.WxPayServiceImpl;
+/*import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;*/
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,6 +65,8 @@ public class PayController {
      * @return
      * @throws Exception
      */
+   // @ApiOperation(value="创建阿里支付订单", notes="传递CreatePayBean要求的参数,创建支付宝订单,并且返回支付二维码")
+   // @ApiImplicitParam(name = "createPay",value ="创建订单参数",required = true,dataType = "CreatePayBean")
     @RequestMapping(value = "/createPay", method = {RequestMethod.POST, RequestMethod.GET}, produces = "image/jpeg;charset=UTF-8")
     @ResponseBody
     public byte[] createPay(CreatePayBean createPay) throws Exception {
@@ -108,6 +112,8 @@ public class PayController {
      * @return
      * @throws Exception
      */
+   // @ApiOperation(value="查询交易状态", notes="查询交易状态")
+   // @ApiImplicitParam(name = "tradeStatus",value ="订单状态参数",required = true,dataType = "QueryTradeStatus")
     @RequestMapping(value = "/queryTradeOrderStatus", method = {RequestMethod.GET})
     @ResponseBody
     public TradeQueryResult queryTradeOrderStatus(QueryTradeStatus tradeStatus) throws Exception {
@@ -132,6 +138,8 @@ public class PayController {
      * @param refundTrade
      * @return
      */
+   // @ApiOperation(value="交易退款", notes="交易退款")
+    //@ApiImplicitParam(name = "refundTrade",value ="交易退款参数",required = true,dataType = "RefundTrade")
     @RequestMapping(value = "/refundTradeOrder", method = {RequestMethod.GET})
     @ResponseBody
     public String refundTradeOrder(RefundTrade refundTrade) throws Exception {
@@ -158,6 +166,8 @@ public class PayController {
      * @param queryRefundTrade
      * @return
      */
+   // @ApiOperation(value="查询交易退款", notes="查询交易退款")
+    //@ApiImplicitParam(name = "queryRefundTrade",value ="查询交易退款参数",required = true,dataType = "QueryRefundTrade")
     @RequestMapping(value = "/queryRefundTradeOrder", method = {RequestMethod.GET})
     @ResponseBody
     public String queryRefundTradeOrder(QueryRefundTrade queryRefundTrade) throws Exception {
@@ -185,6 +195,8 @@ public class PayController {
      * @return
      * @throws Exception
      */
+   // @ApiOperation(value="微信通知接口", notes="微信通知接口")
+    //@ApiImplicitParam(name = "request",value ="微信通知HttpServletRequest参数",required = true,dataType = "HttpServletRequest")
     @RequestMapping(value = "/notifyFromWx", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public ProtocolResData notifyFromWx(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -239,6 +251,8 @@ public class PayController {
      * @return
      * @throws Exception
      */
+    //@ApiOperation(value="阿里支付通知接口", notes="阿里支付通知接口")
+    //@ApiImplicitParam(name = "request",value ="阿里支付通知HttpServletRequest参数",required = true,dataType = "HttpServletRequest")
     @RequestMapping(value = "/notifyFromAli", method = {RequestMethod.POST})
     @ResponseBody
     public String notifyFromAli(HttpServletRequest request) throws Exception {
